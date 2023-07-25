@@ -9,6 +9,29 @@ public class Playlist {
 
     }
 
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o!=null && this.getClass()!=o.getClass()){
+            return false;
+        }
+        Playlist playlist = (Playlist) o;
+        if(this.getTitle().equals(playlist.getTitle())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = title.hashCode();
+        return result;
+    }
+
     public Playlist(String title){
         this.title = title;
     }

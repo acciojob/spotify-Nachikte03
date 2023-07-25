@@ -9,6 +9,28 @@ public class Song {
 
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o!=null && this.getClass()!=o.getClass()){
+            return false;
+        }
+        Song song = (Song) o;
+        if(this.getTitle().equals(song.getTitle())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = title.hashCode();
+        return result;
+    }
+
     public Song(String title, int length){
         this.title = title;
         this.length = length;

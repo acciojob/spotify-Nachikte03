@@ -11,6 +11,27 @@ public class Album {
 
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o!=null && this.getClass()!=o.getClass()){
+            return false;
+        }
+        Album album = (Album) o;
+        if(this.getTitle().equals(album.getTitle())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = title.hashCode();
+        return result;
+    }
     public Album(String title){
         this.title = title;
         this.releaseDate = new Date();

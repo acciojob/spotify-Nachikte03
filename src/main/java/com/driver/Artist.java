@@ -14,7 +14,27 @@ public class Artist {
         this.name = name;
         this.likes = 0;
     }
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o!=null && this.getClass()!=o.getClass()){
+            return false;
+        }
+        Artist artist = (Artist) o;
+        if(this.getName().equals(artist.getName())){
+            return true;
+        }
+        return false;
+    }
 
+    @Override
+    public int hashCode()
+    {
+        int result = name.hashCode();
+        return result;
+    }
     public String getName() {
         return name;
     }
