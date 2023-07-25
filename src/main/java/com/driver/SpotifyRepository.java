@@ -45,7 +45,6 @@ public class SpotifyRepository {
 
     public Artist createArtist(String name) {
         Artist artist = new Artist(name);
-        artist.setLikes(0);
         artists.add(artist);
         return artist;
     }
@@ -66,19 +65,16 @@ public class SpotifyRepository {
         if(artistAlbumMap.containsKey(artist)){
             if(!artistAlbumMap.get(artist).contains(album)){
                 artistAlbumMap.get(artist).add(album);
-                artist.setLikes(artist.getLikes()+1);
             }
         }
         else{
             artistAlbumMap.put(artist,new ArrayList<>(){{add(album);}});
-            artist.setLikes(1);
         }
         return album;
     }
 
     public Song createSong(String title, String albumName, int length) throws Exception{
         Song song = new Song(title,length);
-        song.setLikes(0);
         Album album = null;
         songs.add(song);
         for(Album k:albums){
@@ -227,6 +223,13 @@ public class SpotifyRepository {
             throw new Exception("Song not found");
         }
         song.setLikes(song.getLikes()+1);
+        for(Artist artist:artists){
+            for(Album album:artistAlbumMap.get(artist)){
+                if(albumSongMap.containsKey(album)){
+                    artist.setLikes(artist.getLikes()+1);
+                }
+            }
+        }
         if(songLikeMap.containsKey(song)){
             songLikeMap.get(song).add(user);
         }
